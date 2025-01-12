@@ -69,13 +69,13 @@ const Index = () => {
             rel="noopener noreferrer"
             className="underline hover:opacity-80"
             style={{ color: textColor }}
-          >Dys</a> = <span style={{ color: definitionColor }}>dis&shy;eased, ab&shy;nor&shy;mal, or faul&shy;ty</span>.) Your child is just what the world needs.
+          >Dys</a> = <span style={{ color: definitionColor }}>dis&shy;eased, ab&shy;nor&shy;mal or faul&shy;ty</span>.) Your child is just what the world needs.
         </h1>
       </div>
       
-      <div className="-mt-12 sm:-mt-16 md:-mt-20 mb-12 sm:mb-16 md:mb-20 text-center">
+      <div className="flex flex-col items-center justify-center space-y-12 sm:space-y-16 md:space-y-20 mb-12 sm:mb-16 md:mb-20">
         <h2
-          className="text-2xl sm:text-3xl md:text-4xl mb-12 sm:mb-16 md:mb-20"
+          className="text-2xl sm:text-3xl md:text-4xl"
           style={{ color: textColor }}
         >
           <span className="line-through">Dyslexia</span> parent and pupil launchpad. Coming soon.
