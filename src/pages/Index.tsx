@@ -12,15 +12,21 @@ const colors = [
 const Index = () => {
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [textColor, setTextColor] = useState("#FFFFFF");
+  const [contrastColor, setContrastColor] = useState("#F97316");
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentColorIndex((prev) => (prev + 1) % colors.length);
-      // Set text color based on background brightness
       const color = colors[(currentColorIndex + 1) % colors.length];
       const brightness = getBrightness(color);
-      setTextColor(brightness > 128 ? "#1A1A1A" : "#F9FAFB");
+      
+      // Set main text color based on background brightness
+      const mainColor = brightness > 128 ? "#1A1A1A" : "#F9FAFB";
+      setTextColor(mainColor);
+      
+      // Set contrast color for "is not dyslexic"
+      setContrastColor(brightness > 128 ? "#F97316" : "#22D3EE");
     }, 7000);
 
     return () => clearInterval(interval);
@@ -41,10 +47,14 @@ const Index = () => {
       style={{ backgroundColor: colors[currentColorIndex] }}
     >
       <h1
-        className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold text-center mb-8 max-w-7xl leading-tight uppercase tracking-tight"
+        className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold text-center mb-8 max-w-7xl leading-tight uppercase tracking-normal md:tracking-wide lg:tracking-wider xl:tracking-widest"
         style={{ color: textColor }}
       >
-        Your child is not Dyslexic.
+        Your child{" "}
+        <span style={{ color: contrastColor }}>
+          is not Dyslexic
+        </span>
+        .
         <br />
         (<a 
           href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
