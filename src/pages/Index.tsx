@@ -46,9 +46,9 @@ const Index = () => {
       className="min-h-screen flex flex-col items-center justify-between p-6 font-poppins"
       style={{ backgroundColor: colors[currentColorIndex] }}
     >
-      <div className="flex-grow flex items-center justify-center">
+      <div className="flex-grow flex items-center justify-center w-full">
         <h1
-          className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold text-center max-w-7xl leading-tight uppercase tracking-normal md:tracking-wide lg:tracking-wider xl:tracking-widest"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-semibold text-center leading-tight uppercase tracking-normal sm:tracking-wide md:tracking-wider lg:tracking-widest"
           style={{ 
             color: textColor,
             wordBreak: "break-word",
@@ -57,6 +57,7 @@ const Index = () => {
             msHyphens: "manual",
             hyphenateCharacter: "‐",
             overflowWrap: "break-word",
+            maxWidth: "95vw",
           }}
         >
           Your&shy;child <span style={{ color: contrastColor }}>is&shy;not Dys&shy;lexic</span>. (<a 
