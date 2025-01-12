@@ -51,7 +51,7 @@ const Index = () => {
     >
       <div className="flex-1 flex items-center justify-center w-full">
         <h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-semibold text-center leading-[1.1] sm:leading-[1.2] md:leading-[1.3] lg:leading-[1.4] uppercase tracking-normal sm:tracking-wide md:tracking-wider lg:tracking-[0.1em] xl:tracking-[0.15em]"
+          className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[12rem] font-semibold text-center leading-[1.1] sm:leading-[1.2] md:leading-[1.3] lg:leading-[1.4] uppercase tracking-normal sm:tracking-wide md:tracking-wider lg:tracking-[0.1em] xl:tracking-[0.15em]"
           style={{ 
             color: textColor,
             wordBreak: "break-word",
@@ -75,7 +75,7 @@ const Index = () => {
       
       <div className="mt-2 sm:mt-4 text-center">
         <h2
-          className="text-xl sm:text-2xl md:text-3xl mb-4 sm:mb-6 md:mb-8"
+          className="text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 md:mb-8"
           style={{ color: textColor }}
         >
           <span className="line-through">Dyslexia</span> parent and pupil launchpad. Coming soon.
