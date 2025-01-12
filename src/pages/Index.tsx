@@ -46,7 +46,7 @@ const Index = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col justify-between items-center p-2 sm:p-3 md:p-4 lg:p-6 font-poppins"
+      className="min-h-screen flex flex-col justify-between items-center p-2 sm:p-3 md:p-4 lg:p-6 font-inter"
       style={{ backgroundColor: colors[currentColorIndex] }}
     >
       <div className="flex-1 flex items-center justify-center w-full">
