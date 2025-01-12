@@ -20,27 +20,22 @@ const Verify = () => {
         const refreshToken = params.get('refresh_token');
         const type = params.get('type');
 
-        if (accessToken && type === 'signup') {
-          // Set the session using the tokens
-          const { error } = await supabase.auth.setSession({
-            access_token: accessToken,
-            refresh_token: refreshToken!
-          });
+        if (!accessToken || !refreshToken) {
+          throw new Error("No verification tokens found");
+        }
 
-          if (error) throw error;
-          
+        // Set the session using the tokens
+        const { data: { session }, error } = await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        });
+
+        if (error) throw error;
+
+        if (session) {
           toast.success("Email verified successfully!");
         } else {
-          // Check if user is already verified
-          const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-          
-          if (sessionError) throw sessionError;
-          
-          if (session) {
-            toast.success("Already verified!");
-          } else {
-            toast.error("Verification failed. Please try signing up again.");
-          }
+          throw new Error("Failed to establish session");
         }
       } catch (error) {
         console.error("Verification error:", error);
