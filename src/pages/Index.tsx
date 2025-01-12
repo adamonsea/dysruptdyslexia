@@ -40,21 +40,19 @@ const Index = () => {
       setDefinitionColor(brightness > 128 ? "#6366F1" : "#D946EF");
     }, 7000);
 
-    // Glitch effect interval - slightly slower now
     const glitchInterval = setInterval(() => {
-      // Quick sequence of font changes with slightly longer delays
       const glitchSequence = async () => {
-        setCurrentFontIndex(1); // First glitch font
+        setCurrentFontIndex(1);
         await new Promise(r => setTimeout(r, 70));
-        setCurrentFontIndex(2); // Second glitch font
+        setCurrentFontIndex(2);
         await new Promise(r => setTimeout(r, 70));
-        setCurrentFontIndex(1); // Back to first glitch font
+        setCurrentFontIndex(1);
         await new Promise(r => setTimeout(r, 70));
-        setCurrentFontIndex(0); // Return to base font
+        setCurrentFontIndex(0);
       };
 
       glitchSequence();
-    }, 2500); // Increased from 2000 to 2500ms
+    }, 2500);
 
     return () => {
       clearInterval(colorInterval);
@@ -105,11 +103,7 @@ const Index = () => {
               fontFamily: fonts[currentFontIndex],
               transition: "font-family 0.05s ease-in-out"
             }}
-          >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a>.) Your child is just what the world <span style={{ 
-            fontWeight: 800,
-            textShadow: '0.02em 0.02em 0 rgba(0,0,0,0.1)',
-            letterSpacing: '0.02em',
-          }}>needs</span>.
+          >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a>.) Your child <span style={{ fontFamily: "'Plus Jakarta Sans'", fontWeight: 800, textShadow: '0.02em 0.02em 0 rgba(0,0,0,0.1)', letterSpacing: '0.02em' }}>is just what</span> the world <span style={{ fontWeight: 800, textShadow: '0.02em 0.02em 0 rgba(0,0,0,0.1)', letterSpacing: '0.02em' }}>needs</span>.
         </h1>
       </div>
       
