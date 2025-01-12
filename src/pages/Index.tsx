@@ -73,9 +73,9 @@ const Index = () => {
         </h1>
       </div>
       
-      <div className="mt-2 sm:mt-4 text-center">
+      <div className="-mt-8 sm:-mt-12 md:-mt-16 text-center">
         <h2
-          className="text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 md:mb-8"
+          className="text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3 md:mb-4"
           style={{ color: textColor }}
         >
           <span className="line-through">Dyslexia</span> parent and pupil launchpad. Coming soon.
