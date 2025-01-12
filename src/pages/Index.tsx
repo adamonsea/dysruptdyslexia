@@ -32,9 +32,8 @@ const Index = () => {
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const colorInterval = setInterval(() => {
       setCurrentColorIndex((prev) => (prev + 1) % colors.length);
-      setCurrentFontIndex((prev) => (prev + 1) % fonts.length);
       const color = colors[(currentColorIndex + 1) % colors.length];
       const brightness = getBrightness(color);
       
@@ -44,7 +43,15 @@ const Index = () => {
       setDefinitionColor(brightness > 128 ? "#6366F1" : "#D946EF");
     }, 7000);
 
-    return () => clearInterval(interval);
+    // Separate interval for more frequent font changes
+    const fontInterval = setInterval(() => {
+      setCurrentFontIndex((prev) => (prev + 1) % fonts.length);
+    }, 1000); // Changes every second for a glitchier effect
+
+    return () => {
+      clearInterval(colorInterval);
+      clearInterval(fontInterval);
+    };
   }, [currentColorIndex]);
 
   const getBrightness = (color: string) => {
@@ -80,11 +87,17 @@ const Index = () => {
             rel="noopener noreferrer"
             className="underline hover:opacity-80"
             style={{ color: textColor }}
-          >Dys</a> = <span style={{ 
-            color: definitionColor,
-            fontFamily: fonts[currentFontIndex],
-            transition: "font-family 0.5s ease-in-out"
-          }}>dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</span>.) Your child is just what the world needs.
+          >Dys</a> <a 
+            href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:opacity-80"
+            style={{ 
+              color: definitionColor,
+              fontFamily: fonts[currentFontIndex],
+              transition: "font-family 0.5s ease-in-out"
+            }}
+          >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a>.) Your child is just what the world needs.
         </h1>
       </div>
       
