@@ -14,13 +14,11 @@ const colors = [
   "#F43F5E", // Rose
 ];
 
+// Reduced set of similar-width fonts for glitch effect
 const fonts = [
-  "'Plus Jakarta Sans'",
-  "'Permanent Marker'",
-  "'Righteous'",
-  "'Rubik Mono One'",
-  "'Bungee Shade'",
-  "'Nabla'"
+  "'Plus Jakarta Sans'", // Base font
+  "'Righteous'",        // Similar width glitch font 1
+  "'Rubik Mono One'"    // Similar width glitch font 2
 ];
 
 const Index = () => {
@@ -43,14 +41,25 @@ const Index = () => {
       setDefinitionColor(brightness > 128 ? "#6366F1" : "#D946EF");
     }, 7000);
 
-    // Separate interval for more frequent font changes
-    const fontInterval = setInterval(() => {
-      setCurrentFontIndex((prev) => (prev + 1) % fonts.length);
-    }, 1000); // Changes every second for a glitchier effect
+    // Glitch effect interval
+    const glitchInterval = setInterval(() => {
+      // Quick sequence of font changes
+      const glitchSequence = async () => {
+        setCurrentFontIndex(1); // First glitch font
+        await new Promise(r => setTimeout(r, 50));
+        setCurrentFontIndex(2); // Second glitch font
+        await new Promise(r => setTimeout(r, 50));
+        setCurrentFontIndex(1); // Back to first glitch font
+        await new Promise(r => setTimeout(r, 50));
+        setCurrentFontIndex(0); // Return to base font
+      };
+
+      glitchSequence();
+    }, 2000); // Glitch every 2 seconds
 
     return () => {
       clearInterval(colorInterval);
-      clearInterval(fontInterval);
+      clearInterval(glitchInterval);
     };
   }, [currentColorIndex]);
 
@@ -95,7 +104,7 @@ const Index = () => {
             style={{ 
               color: definitionColor,
               fontFamily: fonts[currentFontIndex],
-              transition: "font-family 0.5s ease-in-out"
+              transition: "font-family 0.05s ease-in-out"
             }}
           >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a>.) Your child is just what the world needs.
         </h1>
