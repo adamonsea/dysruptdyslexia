@@ -14,8 +14,18 @@ const colors = [
   "#F43F5E", // Rose
 ];
 
+const fonts = [
+  "'Plus Jakarta Sans'",
+  "'Permanent Marker'",
+  "'Righteous'",
+  "'Rubik Mono One'",
+  "'Bungee Shade'",
+  "'Nabla'"
+];
+
 const Index = () => {
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
+  const [currentFontIndex, setCurrentFontIndex] = useState(0);
   const [textColor, setTextColor] = useState("#FFFFFF");
   const [contrastColor, setContrastColor] = useState("#F97316");
   const [definitionColor, setDefinitionColor] = useState("#22D3EE");
@@ -24,6 +34,7 @@ const Index = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentColorIndex((prev) => (prev + 1) % colors.length);
+      setCurrentFontIndex((prev) => (prev + 1) % fonts.length);
       const color = colors[(currentColorIndex + 1) % colors.length];
       const brightness = getBrightness(color);
       
@@ -69,7 +80,11 @@ const Index = () => {
             rel="noopener noreferrer"
             className="underline hover:opacity-80"
             style={{ color: textColor }}
-          >Dys</a> = <span style={{ color: definitionColor }}>dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</span>.) Your child is just what the world needs.
+          >Dys</a> = <span style={{ 
+            color: definitionColor,
+            fontFamily: fonts[currentFontIndex],
+            transition: "font-family 0.5s ease-in-out"
+          }}>dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</span>.) Your child is just what the world needs.
         </h1>
       </div>
       
