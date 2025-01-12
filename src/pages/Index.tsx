@@ -104,7 +104,7 @@ const Index = () => {
             maxWidth: "95vw",
           }}
         >
-          Your child <span style={{ color: textColor }}>is</span> <span style={{ ...heavyTextStyle, color: contrastColor }}>not Dys&shy;lexic...</span> <span style={{ color: definitionColor }}>(</span><a 
+          Your child <span style={{ color: textColor }}>is</span> <span style={{ position: 'relative' }}><span style={{ position: 'absolute', inset: '-0.15em -0.3em', backgroundColor: textColor, opacity: 0.15, borderRadius: '0.1em' }}></span><span style={{ ...heavyTextStyle, color: contrastColor, position: 'relative' }}>not Dys&shy;lexic...</span></span> <span style={{ color: definitionColor }}>(</span><a 
             href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
             target="_blank"
             rel="noopener noreferrer"
