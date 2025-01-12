@@ -14,7 +14,6 @@ const colors = [
   "#F43F5E", // Rose
 ];
 
-// Reduced set of similar-width fonts for glitch effect
 const fonts = [
   "'Plus Jakarta Sans'", // Base font
   "'Righteous'",        // Similar width glitch font 1
@@ -106,7 +105,11 @@ const Index = () => {
               fontFamily: fonts[currentFontIndex],
               transition: "font-family 0.05s ease-in-out"
             }}
-          >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a>.) Your child is just what the world <span className="font-black">needs</span>.
+          >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a>.) Your child is just what the world <span style={{ 
+            fontWeight: 800,
+            textShadow: '0.02em 0.02em 0 rgba(0,0,0,0.1)',
+            letterSpacing: '0.02em',
+          }}>needs</span>.
         </h1>
       </div>
       
