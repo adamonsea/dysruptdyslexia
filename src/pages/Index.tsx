@@ -102,7 +102,7 @@ const Index = () => {
             maxWidth: "95vw",
           }}
         >
-          Your child <span style={{ color: textColor }}>is</span> <span style={{ ...heavyTextStyle, color: contrastColor, background: `linear-gradient(0deg, ${textColor} 40%, transparent 40%)` }}>not Dys&shy;lexic...</span> <span style={{ color: definitionColor }}>(</span><a 
+          Your child <span style={{ color: textColor }}>is</span> <span style={{ ...heavyTextStyle, color: contrastColor, background: `linear-gradient(0deg, ${textColor} 100%, transparent 0%)` }}>not Dys&shy;lexic...</span> <span style={{ color: definitionColor }}>(</span><a 
             href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
             target="_blank"
             rel="noopener noreferrer"
