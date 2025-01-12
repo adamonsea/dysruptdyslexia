@@ -103,7 +103,13 @@ const Index = () => {
               fontFamily: fonts[currentFontIndex],
               transition: "font-family 0.05s ease-in-out"
             }}
-          >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a>.) Your child <span style={{ fontFamily: "'Plus Jakarta Sans'", fontWeight: 800, textShadow: '0.02em 0.02em 0 rgba(0,0,0,0.1)', letterSpacing: '0.02em' }}>is just what</span> the world <span style={{ fontWeight: 800, textShadow: '0.02em 0.02em 0 rgba(0,0,0,0.1)', letterSpacing: '0.02em' }}>needs</span>.
+          >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a>.) Your child <span style={{ fontFamily: "'Plus Jakarta Sans'", fontWeight: 800, textShadow: '0.02em 0.02em 0 rgba(0,0,0,0.1)', letterSpacing: '0.02em' }}>is just what</span> the world <span style={{ 
+            fontWeight: 800, 
+            textShadow: '0.03em 0.03em 0 rgba(0,0,0,0.15)', 
+            letterSpacing: '0.05em',
+            WebkitTextStroke: '0.02em currentColor',
+            filter: 'contrast(1.1)',
+          }}>needs</span>.
         </h1>
       </div>
       
