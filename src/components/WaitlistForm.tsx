@@ -18,13 +18,26 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
   const [age, setAge] = useState("");
   const [updates, setUpdates] = useState(false);
 
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!name.trim()) {
+      toast.error("Please enter your name");
+      return;
+    }
+
+    if (!validateEmail(email)) {
       toast.error("Please enter a valid email address");
+      return;
+    }
+
+    if (!age) {
+      toast.error("Please select your child's age");
       return;
     }
 
