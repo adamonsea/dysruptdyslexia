@@ -11,35 +11,47 @@ const Verify = () => {
   useEffect(() => {
     const handleVerification = async () => {
       try {
+        console.log("Starting verification process");
+        console.log("Current location:", location);
+        
         // Get the hash portion of the URL (excluding the # symbol)
         const hash = location.hash.substring(1);
+        console.log("Hash string:", hash);
         
         // Parse the hash string into key-value pairs
         const params = new URLSearchParams(hash);
         const accessToken = params.get('access_token');
         const refreshToken = params.get('refresh_token');
-        const type = params.get('type');
+        
+        console.log("Tokens found:", { 
+          accessToken: accessToken ? "present" : "missing", 
+          refreshToken: refreshToken ? "present" : "missing" 
+        });
 
         if (!accessToken || !refreshToken) {
-          throw new Error("No verification tokens found");
+          throw new Error("Verification tokens are missing");
         }
 
         // Set the session using the tokens
-        const { data: { session }, error } = await supabase.auth.setSession({
+        const { data, error } = await supabase.auth.setSession({
           access_token: accessToken,
           refresh_token: refreshToken,
         });
 
-        if (error) throw error;
+        if (error) {
+          console.error("Session error:", error);
+          throw error;
+        }
 
-        if (session) {
+        if (data.session) {
+          console.log("Session established successfully");
           toast.success("Email verified successfully!");
         } else {
           throw new Error("Failed to establish session");
         }
       } catch (error) {
         console.error("Verification error:", error);
-        toast.error("An error occurred during verification");
+        toast.error("An error occurred during verification. Please try again.");
       } finally {
         setVerifying(false);
         // Redirect after a short delay
@@ -49,7 +61,14 @@ const Verify = () => {
       }
     };
 
-    handleVerification();
+    // Only attempt verification if there's a hash in the URL
+    if (location.hash) {
+      handleVerification();
+    } else {
+      console.log("No verification hash found in URL");
+      setVerifying(false);
+      navigate("/");
+    }
   }, [navigate, location]);
 
   return (
