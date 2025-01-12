@@ -46,7 +46,13 @@ const Index = () => {
       >
         Your child is not Dyslexic.
         <br />
-        (Dys = diseased, abnormal, or faulty.)
+        (<a 
+          href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:opacity-80"
+          style={{ color: textColor }}
+        >Dys</a> = diseased, abnormal, or faulty.)
         <br />
         Your child is just what the world needs.
       </h1>
