@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { supabase } from "@/lib/supabase";
 
 interface WaitlistFormProps {
   open: boolean;
@@ -17,6 +18,7 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
   const [updates, setUpdates] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -41,15 +43,41 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
       return;
     }
 
-    // Here you would typically send the data to your backend
-    toast.success("Thank you for joining the waitlist!");
-    onOpenChange(false);
-    
-    // Reset form
-    setName("");
-    setEmail("");
-    setAge("");
-    setUpdates(false);
+    setIsSubmitting(true);
+
+    try {
+      // Sign up the user with Supabase
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password: crypto.randomUUID(), // Generate a random password as we'll use email-only auth
+        options: {
+          data: {
+            name,
+            child_age: age,
+            wants_updates: updates,
+          },
+          emailRedirectTo: `${window.location.origin}/verify`,
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      toast.success("Please check your email to verify your account!");
+      onOpenChange(false);
+      
+      // Reset form
+      setName("");
+      setEmail("");
+      setAge("");
+      setUpdates(false);
+    } catch (error) {
+      toast.error("An error occurred. Please try again later.");
+      console.error("Signup error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -103,8 +131,8 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
               Send me regular launchpad updates
             </Label>
           </div>
-          <Button type="submit" className="w-full">
-            Join Waitlist
+          <Button type="submit" className="w-full" disabled={isSubmitting}>
+            {isSubmitting ? "Sending..." : "Join Waitlist"}
           </Button>
         </form>
       </DialogContent>
