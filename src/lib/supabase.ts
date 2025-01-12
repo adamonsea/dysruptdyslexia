@@ -10,8 +10,10 @@ console.log('Supabase Anon Key:', !!supabaseAnonKey ? 'Present' : 'Missing');
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.error('Missing required Supabase environment variables. Please ensure both VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set.');
-  // Instead of throwing an error, we'll create a dummy client that will be replaced once the variables are available
-  export const supabase = createClient('https://placeholder-url.supabase.co', 'placeholder-key');
-} else {
-  export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 }
+
+// Create the client with either the real credentials or placeholder values
+export const supabase = createClient(
+  supabaseUrl || 'https://placeholder-url.supabase.co',
+  supabaseAnonKey || 'placeholder-key'
+);
