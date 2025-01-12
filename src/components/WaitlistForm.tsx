@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/integrations/supabase/client";
 
 interface WaitlistFormProps {
   open: boolean;
@@ -46,7 +46,6 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
     setIsSubmitting(true);
 
     try {
-      // Sign up the user with Supabase
       const { data, error } = await supabase.auth.signUp({
         email,
         password: crypto.randomUUID(), // Generate a random password as we'll use email-only auth
@@ -73,8 +72,8 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
       setAge("");
       setUpdates(false);
     } catch (error) {
-      toast.error("An error occurred. Please try again later.");
       console.error("Signup error:", error);
+      toast.error("An error occurred. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
