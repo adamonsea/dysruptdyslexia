@@ -43,7 +43,7 @@ const Index = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center p-6 font-poppins"
+      className="min-h-screen flex flex-col justify-between items-center p-6 font-poppins"
       style={{ backgroundColor: colors[currentColorIndex] }}
     >
       <div className="flex-1 flex items-center justify-center w-full">
@@ -70,7 +70,7 @@ const Index = () => {
         </h1>
       </div>
       
-      <div className="mt-auto text-center">
+      <div className="mt-4 text-center">
         <h2
           className="text-xl md:text-2xl mb-8"
           style={{ color: textColor }}
