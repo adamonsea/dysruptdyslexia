@@ -106,7 +106,7 @@ const Index = () => {
               fontFamily: fonts[currentFontIndex],
               transition: "font-family 0.05s ease-in-out"
             }}
-          >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a>.) Your child is just what the world <span className="font-bold">needs</span>.
+          >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a>.) Your child is just what the world <span className="font-black">needs</span>.
         </h1>
       </div>
       
