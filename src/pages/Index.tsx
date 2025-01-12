@@ -110,7 +110,7 @@ const Index = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="underline hover:opacity-80"
-            style={{ color: textColor }}
+            style={{ color: definitionColor }}
           >Dys</a> <a 
             href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
             target="_blank"
