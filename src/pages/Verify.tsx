@@ -1,26 +1,32 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 const Verify = () => {
   const [verifying, setVerifying] = useState(true);
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   useEffect(() => {
     const handleVerification = async () => {
       try {
-        // Get the verification token from the URL
-        const token_hash = searchParams.get('token_hash');
-        const type = searchParams.get('type');
+        // Get the hash portion of the URL (excluding the # symbol)
+        const hash = location.hash.substring(1);
         
-        if (token_hash && type) {
-          const { error } = await supabase.auth.verifyOtp({
-            token_hash,
-            type: type as any,
+        // Parse the hash string into key-value pairs
+        const params = new URLSearchParams(hash);
+        const accessToken = params.get('access_token');
+        const refreshToken = params.get('refresh_token');
+        const type = params.get('type');
+
+        if (accessToken && type === 'signup') {
+          // Set the session using the tokens
+          const { error } = await supabase.auth.setSession({
+            access_token: accessToken,
+            refresh_token: refreshToken!
           });
-          
+
           if (error) throw error;
           
           toast.success("Email verified successfully!");
@@ -49,7 +55,7 @@ const Verify = () => {
     };
 
     handleVerification();
-  }, [navigate, searchParams]);
+  }, [navigate, location]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
