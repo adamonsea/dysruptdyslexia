@@ -43,43 +43,49 @@ const Index = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center p-6 font-poppins"
+      className="min-h-screen flex flex-col items-center justify-between p-6 font-poppins"
       style={{ backgroundColor: colors[currentColorIndex] }}
     >
-      <h1
-        className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold text-center mb-8 max-w-7xl leading-tight uppercase tracking-normal md:tracking-wide lg:tracking-wider xl:tracking-widest"
-        style={{ color: textColor }}
-      >
-        Your child{" "}
-        <span style={{ color: contrastColor }}>
-          is not Dyslexic
-        </span>
-        . (<a 
-          href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:opacity-80"
+      <div className="flex-grow flex items-center justify-center">
+        <h1
+          className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold text-center max-w-7xl leading-tight uppercase tracking-normal md:tracking-wide lg:tracking-wider xl:tracking-widest hyphens-auto"
+          style={{ 
+            color: textColor,
+            wordBreak: "break-word",
+            hyphens: "auto",
+            WebkitHyphens: "auto",
+            msHyphens: "auto"
+          }}
+        >
+          Your child <span style={{ color: contrastColor }}>is not Dyslexic</span>. (<a 
+            href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:opacity-80"
+            style={{ color: textColor }}
+          >Dys</a> = diseased, abnormal, or faulty.) Your child is just what the world needs.
+        </h1>
+      </div>
+      
+      <div className="mt-auto">
+        <h2
+          className="text-xl md:text-2xl mb-12"
           style={{ color: textColor }}
-        >Dys</a> = diseased, abnormal, or faulty.) Your child is just what the world needs.
-      </h1>
-      
-      <h2
-        className="text-xl md:text-2xl mb-12"
-        style={{ color: textColor }}
-      >
-        <span className="line-through">Dyslexia</span> parent and pupil launchpad. Coming soon.
-      </h2>
-      
-      <button
-        onClick={() => setShowForm(true)}
-        className="px-8 py-4 text-lg font-semibold rounded-lg transition-transform duration-300 hover:scale-105"
-        style={{
-          backgroundColor: textColor,
-          color: colors[currentColorIndex],
-        }}
-      >
-        Join waitlist
-      </button>
+        >
+          <span className="line-through">Dyslexia</span> parent and pupil launchpad. Coming soon.
+        </h2>
+        
+        <button
+          onClick={() => setShowForm(true)}
+          className="px-8 py-4 text-lg font-semibold rounded-lg transition-transform duration-300 hover:scale-105"
+          style={{
+            backgroundColor: textColor,
+            color: colors[currentColorIndex],
+          }}
+        >
+          Join waitlist
+        </button>
+      </div>
 
       <WaitlistForm open={showForm} onOpenChange={setShowForm} />
     </div>
