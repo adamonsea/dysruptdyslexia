@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { WaitlistFormFields } from "./waitlist/WaitlistFormFields";
+import { validateEmail } from "@/utils/validation";
 
 interface WaitlistFormProps {
   open: boolean;
@@ -19,11 +17,6 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
   const [age, setAge] = useState("");
   const [updates, setUpdates] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +41,7 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
-        password: crypto.randomUUID(), // Generate a random password as we'll use email-only auth
+        password: crypto.randomUUID(),
         options: {
           data: {
             name,
@@ -86,50 +79,16 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
           <DialogTitle className="text-2xl font-bold">Join the Waitlist</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="age">Child's Age</Label>
-            <Select value={age} onValueChange={setAge} required>
-              <SelectTrigger>
-                <SelectValue placeholder="Select age" />
-              </SelectTrigger>
-              <SelectContent>
-                {Array.from({ length: 15 }, (_, i) => i + 4).map((age) => (
-                  <SelectItem key={age} value={age.toString()}>
-                    {age} years
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              id="updates"
-              checked={updates}
-              onCheckedChange={(checked) => setUpdates(checked as boolean)}
-            />
-            <Label htmlFor="updates" className="text-sm">
-              Send me regular launchpad updates
-            </Label>
-          </div>
+          <WaitlistFormFields
+            name={name}
+            email={email}
+            age={age}
+            updates={updates}
+            onNameChange={setName}
+            onEmailChange={setEmail}
+            onAgeChange={setAge}
+            onUpdatesChange={setUpdates}
+          />
           <Button type="submit" className="w-full" disabled={isSubmitting}>
             {isSubmitting ? "Sending..." : "Join Waitlist"}
           </Button>
