@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { WaitlistForm } from "@/components/WaitlistForm";
 
 const colors = [
-  "#5B21B6", // Deep Purple
-  "#1E40AF", // Rich Blue
-  "#065F46", // Forest Green
-  "#991B1B", // Deep Red
-  "#1E3A8A", // Dark Navy
+  "#8B5CF6", // Vivid Purple
+  "#D946EF", // Magenta Pink
+  "#F97316", // Bright Orange
+  "#0EA5E9", // Ocean Blue
+  "#10B981", // Emerald
 ];
 
 const Index = () => {
@@ -19,7 +19,8 @@ const Index = () => {
       setCurrentColorIndex((prev) => (prev + 1) % colors.length);
       // Set text color based on background brightness
       const color = colors[(currentColorIndex + 1) % colors.length];
-      setTextColor(getBrightness(color) > 128 ? "#000000" : "#FFFFFF");
+      const brightness = getBrightness(color);
+      setTextColor(brightness > 128 ? "#1A1A1A" : "#F9FAFB");
     }, 7000);
 
     return () => clearInterval(interval);
@@ -36,11 +37,11 @@ const Index = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center p-6 transition-colors duration-1000 font-poppins"
+      className="min-h-screen flex flex-col items-center justify-center p-6 font-poppins"
       style={{ backgroundColor: colors[currentColorIndex] }}
     >
       <h1
-        className="text-4xl md:text-6xl lg:text-7xl font-bold text-center mb-8 max-w-5xl leading-tight transition-colors duration-1000"
+        className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold text-center mb-8 max-w-7xl leading-tight uppercase tracking-tight"
         style={{ color: textColor }}
       >
         Your child is not Dyslexic.
@@ -51,7 +52,7 @@ const Index = () => {
       </h1>
       
       <h2
-        className="text-xl md:text-2xl mb-12 transition-colors duration-1000"
+        className="text-xl md:text-2xl mb-12"
         style={{ color: textColor }}
       >
         <span className="line-through">Dyslexia</span> parent and pupil launchpad. Coming soon.
@@ -59,7 +60,7 @@ const Index = () => {
       
       <button
         onClick={() => setShowForm(true)}
-        className="px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-1000 hover:scale-105"
+        className="px-8 py-4 text-lg font-semibold rounded-lg transition-transform duration-300 hover:scale-105"
         style={{
           backgroundColor: textColor,
           color: colors[currentColorIndex],
