@@ -48,7 +48,7 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
             child_age: age,
             wants_updates: updates,
           },
-          emailRedirectTo: `https://d36c84ff-f764-476a-97b7-c0653b289542.lovableproject.com/verify`,
+          emailRedirectTo: window.location.origin + '/verify',
         },
       });
 
