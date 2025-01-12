@@ -41,7 +41,6 @@ const Index = () => {
     return () => clearInterval(interval);
   }, [currentColorIndex]);
 
-  // Calculate brightness of a color
   const getBrightness = (color: string) => {
     const hex = color.replace("#", "");
     const r = parseInt(hex.substr(0, 2), 16);
@@ -52,12 +51,12 @@ const Index = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col justify-between items-center p-6 font-poppins"
+      className="min-h-screen flex flex-col justify-between items-center p-3 sm:p-4 md:p-6 font-poppins"
       style={{ backgroundColor: colors[currentColorIndex] }}
     >
       <div className="flex-1 flex items-center justify-center w-full">
         <h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-semibold text-center leading-[1.1] sm:leading-[1.2] md:leading-[1.3] lg:leading-[1.4] uppercase tracking-normal sm:tracking-wide md:tracking-wider lg:tracking-[0.1em] xl:tracking-[0.15em]"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-semibold text-center leading-[1.1] sm:leading-[1.2] md:leading-[1.3] lg:leading-[1.4] uppercase tracking-normal sm:tracking-wide md:tracking-wider lg:tracking-[0.1em] xl:tracking-[0.15em]"
           style={{ 
             color: textColor,
             wordBreak: "break-word",
@@ -81,7 +80,7 @@ const Index = () => {
       
       <div className="mt-4 text-center">
         <h2
-          className="text-xl md:text-2xl mb-8"
+          className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8"
           style={{ color: textColor }}
         >
           <span className="line-through">Dyslexia</span> parent and pupil launchpad. Coming soon.
@@ -89,7 +88,7 @@ const Index = () => {
         
         <button
           onClick={() => setShowForm(true)}
-          className="px-8 py-4 text-lg font-semibold rounded-lg transition-transform duration-300 hover:scale-105"
+          className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg transition-transform duration-300 hover:scale-105"
           style={{
             backgroundColor: textColor,
             color: colors[currentColorIndex],
