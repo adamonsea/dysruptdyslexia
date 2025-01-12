@@ -10,8 +10,18 @@ const colors = [
   "#6366F1", // Indigo
   "#EC4899", // Pink
   "#14B8A6", // Teal
-  "#8B5CF6", // Purple
   "#F43F5E", // Rose
+  "#3B82F6", // Blue
+  "#06B6D4", // Cyan
+  "#22C55E", // Green
+  "#EAB308", // Yellow
+  "#A855F7", // Purple
+  "#E11D48", // Red
+  "#0891B2", // Dark Cyan
+  "#059669", // Dark Emerald
+  "#7C3AED", // Violet
+  "#DB2777", // Deep Pink
+  "#EA580C", // Deep Orange
 ];
 
 const fonts = [
