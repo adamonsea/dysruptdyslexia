@@ -78,6 +78,14 @@ const Index = () => {
     return (r * 299 + g * 587 + b * 114) / 1000;
   };
 
+  const heavyTextStyle = {
+    fontWeight: 800,
+    textShadow: '0.03em 0.03em 0 rgba(0,0,0,0.15)',
+    letterSpacing: '0.05em',
+    WebkitTextStroke: '0.02em currentColor',
+    filter: 'contrast(1.1)',
+  };
+
   return (
     <div
       className="min-h-screen flex flex-col justify-between items-center p-2 sm:p-3 md:p-4 lg:p-6"
@@ -97,7 +105,7 @@ const Index = () => {
             maxWidth: "95vw",
           }}
         >
-          Your child <span style={{ color: contrastColor }}>is &shy;not Dys&shy;lexic</span>. (<a 
+          Your child <span style={{ color: textColor }}>is</span> <span style={{ ...heavyTextStyle }}>not Dys&shy;lexic</span>. (<a 
             href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
             target="_blank"
             rel="noopener noreferrer"
@@ -113,13 +121,7 @@ const Index = () => {
               fontFamily: fonts[currentFontIndex],
               transition: "font-family 0.05s ease-in-out"
             }}
-          >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a>.) Your child is just what the world <span style={{ 
-            fontWeight: 800, 
-            textShadow: '0.03em 0.03em 0 rgba(0,0,0,0.15)', 
-            letterSpacing: '0.05em',
-            WebkitTextStroke: '0.02em currentColor',
-            filter: 'contrast(1.1)',
-          }}>needs</span>.
+          >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a>.) Your child is just what the world <span style={heavyTextStyle}>needs</span>.
         </h1>
       </div>
       
