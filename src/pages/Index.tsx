@@ -41,21 +41,21 @@ const Index = () => {
       setDefinitionColor(brightness > 128 ? "#6366F1" : "#D946EF");
     }, 7000);
 
-    // Glitch effect interval
+    // Glitch effect interval - slightly slower now
     const glitchInterval = setInterval(() => {
-      // Quick sequence of font changes
+      // Quick sequence of font changes with slightly longer delays
       const glitchSequence = async () => {
         setCurrentFontIndex(1); // First glitch font
-        await new Promise(r => setTimeout(r, 50));
+        await new Promise(r => setTimeout(r, 70));
         setCurrentFontIndex(2); // Second glitch font
-        await new Promise(r => setTimeout(r, 50));
+        await new Promise(r => setTimeout(r, 70));
         setCurrentFontIndex(1); // Back to first glitch font
-        await new Promise(r => setTimeout(r, 50));
+        await new Promise(r => setTimeout(r, 70));
         setCurrentFontIndex(0); // Return to base font
       };
 
       glitchSequence();
-    }, 2000); // Glitch every 2 seconds
+    }, 2500); // Increased from 2000 to 2500ms
 
     return () => {
       clearInterval(colorInterval);
