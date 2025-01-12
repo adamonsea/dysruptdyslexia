@@ -105,7 +105,7 @@ const Index = () => {
             maxWidth: "95vw",
           }}
         >
-          Your child <span style={{ color: textColor }}>is</span> <span style={{ ...heavyTextStyle, color: contrastColor }}>not Dys&shy;lexic</span>. (<a 
+          Your child <span style={{ color: textColor }}>is</span> <span style={{ ...heavyTextStyle, color: contrastColor }}>not Dys&shy;lexic</span>. <span style={{ color: definitionColor }}>(</span><a 
             href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
             target="_blank"
             rel="noopener noreferrer"
@@ -121,7 +121,7 @@ const Index = () => {
               fontFamily: fonts[currentFontIndex],
               transition: "font-family 0.05s ease-in-out"
             }}
-          >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a>.) Your child is just what the world <span style={heavyTextStyle}>needs</span>.
+          >= dis&shy;eased ab&shy;nor&shy;mal or faul&shy;ty</a><span style={{ color: definitionColor }}>)</span><span style={{ color: definitionColor }}>.</span> Your child is just what the world <span style={heavyTextStyle}>needs</span>.
         </h1>
       </div>
       
