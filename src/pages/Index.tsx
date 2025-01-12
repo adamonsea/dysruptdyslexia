@@ -7,12 +7,18 @@ const colors = [
   "#F97316", // Bright Orange
   "#0EA5E9", // Ocean Blue
   "#10B981", // Emerald
+  "#6366F1", // Indigo
+  "#EC4899", // Pink
+  "#14B8A6", // Teal
+  "#8B5CF6", // Purple
+  "#F43F5E", // Rose
 ];
 
 const Index = () => {
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [textColor, setTextColor] = useState("#FFFFFF");
   const [contrastColor, setContrastColor] = useState("#F97316");
+  const [definitionColor, setDefinitionColor] = useState("#22D3EE");
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
@@ -27,6 +33,9 @@ const Index = () => {
       
       // Set contrast color for "is not dyslexic"
       setContrastColor(brightness > 128 ? "#F97316" : "#22D3EE");
+      
+      // Set definition text color - using a different contrasting color
+      setDefinitionColor(brightness > 128 ? "#6366F1" : "#D946EF");
     }, 7000);
 
     return () => clearInterval(interval);
@@ -66,7 +75,7 @@ const Index = () => {
             rel="noopener noreferrer"
             className="underline hover:opacity-80"
             style={{ color: textColor }}
-          >Dys</a> = dis&shy;eased, ab&shy;nor&shy;mal, or faul&shy;ty.) Your child is just what the world needs.
+          >Dys</a> = <span style={{ color: definitionColor }}>dis&shy;eased, ab&shy;nor&shy;mal, or faul&shy;ty</span>.) Your child is just what the world needs.
         </h1>
       </div>
       
