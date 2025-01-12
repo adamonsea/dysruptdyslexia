@@ -48,7 +48,7 @@ const Index = () => {
     >
       <div className="flex-grow flex items-center justify-center w-full">
         <h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-semibold text-center leading-tight uppercase tracking-normal sm:tracking-wide md:tracking-wider lg:tracking-widest"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-semibold text-center leading-[1.1] sm:leading-[1.2] md:leading-[1.3] lg:leading-[1.4] uppercase tracking-normal sm:tracking-wide md:tracking-wider lg:tracking-[0.1em] xl:tracking-[0.15em]"
           style={{ 
             color: textColor,
             wordBreak: "break-word",
@@ -60,7 +60,7 @@ const Index = () => {
             maxWidth: "95vw",
           }}
         >
-          Your&shy;child <span style={{ color: contrastColor }}>is&shy;not Dys&shy;lexic</span>. (<a 
+          Your&shy;child <span style={{ color: contrastColor, letterSpacing: "0.1em" }}>is &shy;not Dys&shy;lexic</span>. (<a 
             href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
             target="_blank"
             rel="noopener noreferrer"
