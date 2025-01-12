@@ -48,22 +48,24 @@ const Index = () => {
     >
       <div className="flex-grow flex items-center justify-center">
         <h1
-          className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold text-center max-w-7xl leading-tight uppercase tracking-normal md:tracking-wide lg:tracking-wider xl:tracking-widest hyphens-auto"
+          className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold text-center max-w-7xl leading-tight uppercase tracking-normal md:tracking-wide lg:tracking-wider xl:tracking-widest"
           style={{ 
             color: textColor,
             wordBreak: "break-word",
-            hyphens: "auto",
-            WebkitHyphens: "auto",
-            msHyphens: "auto"
+            hyphens: "manual",
+            WebkitHyphens: "manual",
+            msHyphens: "manual",
+            hyphenateCharacter: "‐",
+            overflowWrap: "break-word",
           }}
         >
-          Your child <span style={{ color: contrastColor }}>is not Dyslexic</span>. (<a 
+          Your&shy;child <span style={{ color: contrastColor }}>is&shy;not Dys&shy;lexic</span>. (<a 
             href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
             target="_blank"
             rel="noopener noreferrer"
             className="underline hover:opacity-80"
             style={{ color: textColor }}
-          >Dys</a> = diseased, abnormal, or faulty.) Your child is just what the world needs.
+          >Dys</a> = dis&shy;eased, ab&shy;nor&shy;mal, or faul&shy;ty.) Your child is just what the world needs.
         </h1>
       </div>
       
