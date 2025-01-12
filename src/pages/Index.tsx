@@ -80,7 +80,6 @@ const Index = () => {
 
   const heavyTextStyle = {
     fontWeight: 800,
-    textShadow: '0.03em 0.03em 0 rgba(0,0,0,0.15)',
     letterSpacing: '0.05em',
     WebkitTextStroke: '0.02em currentColor',
     filter: 'contrast(1.1)',
@@ -105,7 +104,7 @@ const Index = () => {
             maxWidth: "95vw",
           }}
         >
-          Your child <span style={{ color: textColor }}>is</span> <span style={{ ...heavyTextStyle, color: contrastColor }}>not Dys&shy;lexic</span>. <span style={{ color: definitionColor }}>(</span><a 
+          Your child <span style={{ color: textColor }}>is</span> <span style={{ ...heavyTextStyle, color: contrastColor }}>not Dys&shy;lexic...</span> <span style={{ color: definitionColor }}>(</span><a 
             href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
             target="_blank"
             rel="noopener noreferrer"
