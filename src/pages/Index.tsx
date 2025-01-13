@@ -142,21 +142,22 @@ const Index = () => {
             maxWidth: "95vw",
           }}
         >
-          Your child <span style={{ color: textColor }}>is</span> <span style={{ ...heavyTextStyle, color: contrastColor, background: `linear-gradient(0deg, ${textColor} 100%, transparent 0%)` }}>not Dys&shy;lexic...</span> <span style={{ color: definitionColor }}>("</span><a 
+          Your child <span style={{ color: textColor }}>is</span> <span style={{ ...heavyTextStyle, color: contrastColor, background: `linear-gradient(0deg, ${textColor} 100%, transparent 0%)` }}>not Dys&shy;lexic...</span> <span style={{ color: definitionColor }}>{"("}</span><a 
             href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
             target="_blank"
             rel="noopener noreferrer"
             className="underline hover:opacity-80"
             style={{ color: definitionColor }}
-          >Dys</a> = <span style={{ 
+          >Dys</a><span style={{ color: definitionColor }}> = </span><span style={{ 
             color: definitionColor,
             fontFamily: glitchWord1Font,
             transition: "font-family 0.05s ease-in-out"
-          }}>dis&shy;eased</span>, ab&shy;nor&shy;mal or <span style={{ 
+          }}>dis&shy;eased</span><span style={{ color: definitionColor }}>, </span>ab&shy;nor&shy;mal<span style={{ color: definitionColor }}> or </span><span style={{ 
             color: definitionColor,
             fontFamily: glitchWord2Font,
             transition: "font-family 0.05s ease-in-out"
-          }}>faul&shy;ty</span><span style={{ color: definitionColor }}>")</span><span style={{ color: definitionColor }}>.</span> Your child is just what the world <span style={heavyTextStyle}>needs</span>.
+          }}>faul&shy;ty</span><span style={{ color: definitionColor }}>{")"}</span><span style={{ color: definitionColor }}>.</span>
+          Your child is just what the world <span style={heavyTextStyle}>needs</span>.
         </h1>
       </div>
       
