@@ -93,7 +93,8 @@ export const MainHeading = () => {
               top: `${mousePosition.y + 10}px`,
               transform: 'translate(0, -50%)',
               whiteSpace: 'nowrap',
-              fontSize: '1rem'
+              fontSize: '1rem',
+              letterSpacing: 'normal'  // Added this line to normalize letter spacing
             }}
           >
             Collins Dictionary definition
