@@ -1,5 +1,4 @@
 import { useIsMobile } from '@/hooks/use-mobile';
-import { useState, useEffect } from 'react';
 
 interface DefinitionTooltipProps {
   showTooltip: boolean;
@@ -15,13 +14,12 @@ export const DefinitionTooltip = ({ showTooltip, mousePosition, scrollOffset }: 
     backgroundColor: 'white',
     color: 'black',
     padding: '0.5rem 1rem',
-    borderRadius: '0.25rem',
     pointerEvents: 'none' as const,
     zIndex: 50,
     fontSize: '1rem',
     letterSpacing: 'normal',
     whiteSpace: 'nowrap' as const,
-    transform: `translate(-50%, ${-50 + scrollOffset}px) translate(${Math.sin(scrollOffset * 0.1) * 90}px, 0)`, // Split transform for better centering
+    transform: `translate(-50%, ${-50 + scrollOffset}px) translate(${Math.sin(scrollOffset * 0.5) * 90}px, 0)`,
     top: '50%',
     left: '50%',
     transition: 'transform 0.1s ease-out',
@@ -30,7 +28,6 @@ export const DefinitionTooltip = ({ showTooltip, mousePosition, scrollOffset }: 
     backgroundColor: 'white',
     color: 'black',
     padding: '0.5rem 1rem',
-    borderRadius: '0.25rem',
     pointerEvents: 'none' as const,
     zIndex: 50,
     fontSize: '1rem',
