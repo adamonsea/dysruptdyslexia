@@ -70,7 +70,7 @@ export const Logo = () => {
         className={`transition-all duration-150 ${currentFont} ${isStrikethrough ? 'line-through' : ''}`}
         style={{ 
           textDecorationColor: textColor,
-          textDecorationThickness: '1px',
+          textDecorationThickness: '2px',
           marginLeft: '-0.15em',
           letterSpacing: '-0.02em',
           transform: isStrikethrough ? 'skew(-5deg)' : 'skew(0)',
