@@ -17,18 +17,28 @@ export const Logo = () => {
   useEffect(() => {
     const glitchInterval = setInterval(() => {
       const glitchSequence = async () => {
+        // First glitch
         setIsStrikethrough(true);
         setCurrentFont(fonts[1]);
         await new Promise(r => setTimeout(r, 40));
-        setCurrentFont(fonts[2]);
-        setIsStrikethrough(false);
-        await new Promise(r => setTimeout(r, 40));
-        setCurrentFont(fonts[3]);
+        
+        // Second glitch
         setIsStrikethrough(true);
+        setCurrentFont(fonts[2]);
         await new Promise(r => setTimeout(r, 40));
-        setCurrentFont(fonts[4]);
+        
+        // Third glitch
         setIsStrikethrough(false);
+        setCurrentFont(fonts[3]);
         await new Promise(r => setTimeout(r, 40));
+        
+        // Fourth glitch
+        setIsStrikethrough(true);
+        setCurrentFont(fonts[4]);
+        await new Promise(r => setTimeout(r, 40));
+        
+        // Reset
+        setIsStrikethrough(false);
         setCurrentFont(fonts[0]);
       };
 
