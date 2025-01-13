@@ -80,7 +80,7 @@ const Index = () => {
           
           <button
             onClick={() => setShowForm(true)}
-            className="px-6 sm:px-8 py-3 sm:py-4 text-lg sm:text-xl font-semibold rounded-lg transition-transform duration-300 hover:scale-105"
+            className="px-6 sm:px-8 py-3 sm:py-4 text-lg sm:text-xl font-semibold transition-transform duration-300 hover:scale-105"
             style={{
               backgroundColor: textColor,
               color: colors[currentColorIndex],
