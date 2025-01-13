@@ -65,10 +65,9 @@ const Index = () => {
       glitchSequence();
     }, 2500);
 
-    // Faster strikethrough glitch effect
     const strikethroughInterval = setInterval(() => {
       setIsStrikethrough(prev => !prev);
-    }, 800); // Reduced from 2000ms to 800ms for glitchier effect
+    }, 800);
 
     return () => {
       clearInterval(colorInterval);
@@ -97,11 +96,10 @@ const Index = () => {
     >
       {/* Logo text */}
       <div 
-        className="absolute top-4 left-4 text-sm sm:text-base md:text-lg font-bold tracking-tight mb-16"
+        className="absolute top-4 left-4 text-sm sm:text-base md:text-lg font-bold tracking-tight mb-16 font-logo"
         style={{ 
           color: textColor,
-          fontFamily: "'Caudex', serif",
-          fontWeight: 700
+          fontWeight: 800
         }}
       >
         The campaign to abolish <span 
