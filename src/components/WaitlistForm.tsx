@@ -67,6 +67,19 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
         throw insertError;
       }
 
+      // Send welcome email
+      const { error: emailError } = await supabase.functions.invoke('send-welcome-email', {
+        body: {
+          to: email.toLowerCase().trim(),
+          name: name.trim(),
+        },
+      });
+
+      if (emailError) {
+        console.error('Error sending welcome email:', emailError);
+        // Don't throw here - we still want to consider the signup successful
+      }
+
       toast.success("Successfully joined the waitlist!");
       onOpenChange(false);
       
