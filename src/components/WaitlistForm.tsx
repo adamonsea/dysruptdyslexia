@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
 import { WaitlistFormFields } from "./waitlist/WaitlistFormFields";
 import { validateEmail } from "@/utils/validation";
+import { submitWaitlistEntry } from "@/utils/waitlist";
+import { sendWelcomeEmail } from "@/services/emailService";
 
 interface WaitlistFormProps {
   open: boolean;
@@ -17,6 +18,13 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
   const [age, setAge] = useState("");
   const [updates, setUpdates] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const resetForm = () => {
+    setName("");
+    setEmail("");
+    setAge("");
+    setUpdates(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,58 +47,19 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
     setIsSubmitting(true);
 
     try {
-      // First, check if the email already exists in the waitlist
-      const { data: existingEntries } = await supabase
-        .from('waitlist_entries')
-        .select('email')
-        .eq('email', email.toLowerCase().trim());
-
-      if (existingEntries && existingEntries.length > 0) {
-        toast.error("This email is already registered");
-        setIsSubmitting(false);
-        return;
-      }
-
-      // Insert into waitlist_entries table
-      const { error: insertError } = await supabase
-        .from('waitlist_entries')
-        .insert([
-          {
-            name: name.trim(),
-            email: email.toLowerCase().trim(),
-            child_age: age,
-            wants_updates: updates,
-          }
-        ]);
-
-      if (insertError) {
-        throw insertError;
-      }
-
-      // Send welcome email
-      const { error: emailError } = await supabase.functions.invoke('send-welcome-email', {
-        body: {
-          to: email.toLowerCase().trim(),
-          name: name.trim(),
-        },
+      const success = await submitWaitlistEntry({
+        name,
+        email,
+        child_age: age,
+        wants_updates: updates,
       });
 
-      if (emailError) {
-        console.error('Error sending welcome email:', emailError);
-        // Don't throw here - we still want to consider the signup successful
+      if (success) {
+        await sendWelcomeEmail(email, name);
+        toast.success("Successfully joined the waitlist!");
+        onOpenChange(false);
+        resetForm();
       }
-
-      toast.success("Successfully joined the waitlist!");
-      onOpenChange(false);
-      
-      // Reset form
-      setName("");
-      setEmail("");
-      setAge("");
-      setUpdates(false);
-    } catch (error: any) {
-      console.error("Signup error:", error);
-      toast.error(error.message || "An error occurred. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
