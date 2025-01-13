@@ -4,6 +4,10 @@ import { ColorContext } from "./ColorContext";
 interface GlitchingDefinitionProps {
   mousePosition: { x: number; y: number };
   scrollOffset: number;
+  onMouseMove: (e: React.MouseEvent) => void;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+  showTooltip: boolean;
 }
 
 const fonts = [
@@ -17,7 +21,11 @@ const fonts = [
 
 export const GlitchingDefinition = ({
   mousePosition,
-  scrollOffset
+  scrollOffset,
+  onMouseMove,
+  onMouseEnter,
+  onMouseLeave,
+  showTooltip
 }: GlitchingDefinitionProps) => {
   const { definitionColor } = useContext(ColorContext);
 
@@ -36,7 +44,6 @@ export const GlitchingDefinition = ({
     whiteSpace: "nowrap" as const,
   };
 
-  // Remove the colon from the URL and ensure it's properly formatted
   const dictionaryUrl = "https://www.collinsdictionary.com/dictionary/english/dys";
 
   return (
@@ -45,6 +52,9 @@ export const GlitchingDefinition = ({
       target="_blank"
       rel="noopener noreferrer"
       style={baseStyle}
+      onMouseMove={onMouseMove}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       onClick={(e) => {
         e.preventDefault();
         window.open(dictionaryUrl, '_blank');
