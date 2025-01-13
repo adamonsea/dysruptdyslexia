@@ -38,6 +38,7 @@ const Index = () => {
   const [definitionColor, setDefinitionColor] = useState("#22D3EE");
   const [showForm, setShowForm] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
+  const [logoColor, setLogoColor] = useState("#FFFFFF");
 
   useEffect(() => {
     const colorInterval = setInterval(() => {
@@ -49,6 +50,8 @@ const Index = () => {
       setTextColor(mainColor);
       setContrastColor(brightness > 128 ? "#F97316" : "#22D3EE");
       setDefinitionColor(brightness > 128 ? "#6366F1" : "#D946EF");
+      // Set logo color to be different from text color
+      setLogoColor(brightness > 128 ? "#F97316" : "#FFFFFF");
     }, 7000);
 
     const glitchInterval = setInterval(() => {
@@ -94,7 +97,6 @@ const Index = () => {
       className="min-h-screen flex flex-col justify-between items-center p-2 sm:p-3 md:p-4 lg:p-6 relative"
       style={{ backgroundColor: colors[currentColorIndex] }}
     >
-      {/* Logo text */}
       <div 
         className="absolute top-4 left-4 text-sm sm:text-base md:text-lg font-bold tracking-tight mb-16 font-logo flex items-center gap-2"
         style={{ 
@@ -102,7 +104,7 @@ const Index = () => {
           fontWeight: 800
         }}
       >
-        <span className="text-white">DYSDYS </span>
+        <span style={{ color: logoColor }}>DYSDYS </span>
         The campaign to abolish<span
           className={`transition-all duration-150 ${isStrikethrough ? 'line-through' : ''}`}
           style={{ 
