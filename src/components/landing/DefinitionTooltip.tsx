@@ -21,9 +21,9 @@ export const DefinitionTooltip = ({ showTooltip, mousePosition, scrollOffset }: 
     fontSize: '1rem',
     letterSpacing: 'normal',
     whiteSpace: 'nowrap' as const,
-    transform: `translate(${Math.sin(scrollOffset * 0.1) * 90}px, ${-50 + scrollOffset}px)`, // Increased horizontal movement from 30 to 90
+    transform: `translate(${Math.sin(scrollOffset * 0.1) * 90 - 45}px, ${-50 + scrollOffset}px)`, // Centered initial position
     top: '50%',
-    right: '-20px',
+    left: '50%', // Changed from right to left for centered positioning
     transition: 'transform 0.1s ease-out',
   } : {
     position: 'fixed' as const,
