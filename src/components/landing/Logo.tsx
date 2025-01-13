@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useColors } from './ColorContext';
 
 const fonts = [
-  'font-serif',
+  'font-logo',  // Changed to match the base font
   'font-mono',
   'Righteous',
   'Rubik Mono One',
