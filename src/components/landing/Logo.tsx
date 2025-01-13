@@ -1,13 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useColors } from './ColorContext';
 
+const fonts = [
+  'font-serif',
+  'font-mono',
+  'font-sans',
+  'Caudex',
+];
+
 export const Logo = () => {
   const { textColor, currentColor } = useColors();
   const [isStrikethrough, setIsStrikethrough] = useState(false);
+  const [currentFont, setCurrentFont] = useState(fonts[0]);
 
   useEffect(() => {
     const strikethroughInterval = setInterval(() => {
       setIsStrikethrough(prev => !prev);
+      setCurrentFont(fonts[Math.floor(Math.random() * fonts.length)]);
     }, 800);
 
     return () => clearInterval(strikethroughInterval);
@@ -32,7 +41,7 @@ export const Logo = () => {
         DYSDYS 
       </span>
       The campaign to abolish<span
-        className={`transition-all duration-150 ${isStrikethrough ? 'line-through' : ''}`}
+        className={`transition-all duration-150 ${currentFont} ${isStrikethrough ? 'line-through' : ''}`}
         style={{ 
           textDecorationColor: textColor,
           textDecorationThickness: '1px',
