@@ -1,1 +1,12 @@
 project_id = "madczfhstgndxbndiqtk"
+
+[api]
+enabled = true
+url = "https://madczfhstgndxbndiqtk.supabase.co"
+
+[db]
+port = 5432
+
+[functions]
+[functions.send-welcome-email]
+verify_jwt = false

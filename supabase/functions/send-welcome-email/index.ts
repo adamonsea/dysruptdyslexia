@@ -8,7 +8,7 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
-interface WelcomeEmailRequest {
+interface EmailRequest {
   to: string;
   name: string;
 }
@@ -20,7 +20,8 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { to, name }: WelcomeEmailRequest = await req.json();
+    console.log("Received request to send welcome email");
+    const { to, name }: EmailRequest = await req.json();
     
     console.log(`Sending welcome email to ${to} for ${name}`);
     
