@@ -14,9 +14,12 @@ export const MainHeading = () => {
   useEffect(() => {
     if (isMobile) {
       const handleScroll = () => {
-        const baseOffset = window.scrollY * 0.5;
-        const randomJump = Math.sin(baseOffset) * 45;
-        const quantumJump = (Math.random() - 0.5) * 60;
+        // Create a more dynamic, proton-like movement with increased amplitude
+        const baseOffset = window.scrollY * 0.5; // Increased from 0.1 to 0.5
+        const randomJump = Math.sin(baseOffset) * 45; // Increased from 15 to 45
+        const quantumJump = (Math.random() - 0.5) * 60; // Increased from 20 to 60
+        
+        // Combine movements for a more pronounced, proton-like effect
         const totalOffset = baseOffset + randomJump + quantumJump;
         setScrollOffset(totalOffset);
       };
