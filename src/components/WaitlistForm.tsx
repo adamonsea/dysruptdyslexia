@@ -51,24 +51,6 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
         return;
       }
 
-      // If email doesn't exist, proceed with signup
-      const { data, error } = await supabase.auth.signUp({
-        email: email.toLowerCase().trim(),
-        password: crypto.randomUUID(),
-        options: {
-          data: {
-            name: name.trim(),
-            child_age: age,
-            wants_updates: updates,
-          },
-          emailRedirectTo: 'https://dysdys.com/verify',
-        },
-      });
-
-      if (error) {
-        throw error;
-      }
-
       // Insert into waitlist_entries table
       const { error: insertError } = await supabase
         .from('waitlist_entries')
@@ -85,7 +67,7 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
         throw insertError;
       }
 
-      toast.success("Please check your email to verify your account!");
+      toast.success("Successfully joined the waitlist!");
       onOpenChange(false);
       
       // Reset form
