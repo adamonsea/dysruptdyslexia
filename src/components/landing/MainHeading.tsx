@@ -40,8 +40,14 @@ export const MainHeading = () => {
   useEffect(() => {
     if (isMobile) {
       const handleScroll = () => {
-        const offset = (window.scrollY * 0.1) % 20; // Creates a repeating offset pattern
-        setScrollOffset(offset);
+        // Create a more dynamic, proton-like movement
+        const baseOffset = window.scrollY * 0.1;
+        const randomJump = Math.sin(baseOffset) * 15; // Sine wave movement
+        const quantumJump = (Math.random() - 0.5) * 20; // Random quantum-like jumps
+        
+        // Combine movements for a more chaotic, proton-like effect
+        const totalOffset = baseOffset + randomJump + quantumJump;
+        setScrollOffset(totalOffset);
       };
 
       window.addEventListener('scroll', handleScroll);
@@ -74,7 +80,7 @@ export const MainHeading = () => {
     fontSize: '1rem',
     letterSpacing: 'normal',
     whiteSpace: 'nowrap' as const,
-    transform: `translate(0, ${-50 + scrollOffset}px)`,
+    transform: `translate(${Math.sin(scrollOffset * 0.1) * 30}px, ${-50 + scrollOffset}px)`,
     top: '50%',
     right: '-20px',
     transition: 'transform 0.1s ease-out',
