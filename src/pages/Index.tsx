@@ -118,11 +118,10 @@ const Index = () => {
             textDecorationThickness: '1px',
             fontFamily: fonts[currentFontIndex],
             transition: "font-family 0.05s ease-in-out",
-            marginLeft: '-0.05em'  // Reduce space before 'dyslexia'
+            marginLeft: '-0.15em',  // Increased negative margin
+            letterSpacing: '-0.02em' // Added slight negative letter spacing
           }}
-        >
-          dyslexia
-        </span>
+        >dyslexia</span>
       </div>
 
       <div className="flex-1 flex items-center justify-center w-full mt-24">
