@@ -72,7 +72,16 @@ export const Logo = () => {
           textDecorationColor: textColor,
           textDecorationThickness: '1px',
           marginLeft: '-0.15em',
-          letterSpacing: '-0.02em'
+          letterSpacing: '-0.02em',
+          transform: isStrikethrough ? 'skew(-5deg)' : 'skew(0)',
+          display: 'inline-block',
+          position: 'relative',
+          ...(!isStrikethrough ? {} : {
+            textShadow: `
+              1px 1px ${textColor}88,
+              -1px -1px ${textColor}88
+            `
+          })
         }}
       >dyslexia</span>
     </div>
