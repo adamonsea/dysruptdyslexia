@@ -1,74 +1,61 @@
-import { useState, useEffect } from 'react';
-import { useColors } from './ColorContext';
-import { useIsMobile } from '@/hooks/use-mobile';
-
-const fonts = [
-  "'Plus Jakarta Sans'",
-  "'Righteous'",
-  "'Rubik Mono One'"
-];
+import { useContext } from "react";
+import { ColorContext } from "./ColorContext";
 
 interface GlitchingDefinitionProps {
-  onMouseMove: (e: React.MouseEvent) => void;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-  showTooltip: boolean;
   mousePosition: { x: number; y: number };
   scrollOffset: number;
 }
 
+const fonts = [
+  "'Plus Jakarta Sans', sans-serif",
+  "'Permanent Marker', cursive",
+  "'Righteous', cursive",
+  "'Rubik Mono One', sans-serif",
+  "'Bungee Shade', cursive",
+  "'Nabla', cursive"
+];
+
 export const GlitchingDefinition = ({
-  onMouseMove,
-  onMouseEnter,
-  onMouseLeave,
-  showTooltip,
   mousePosition,
   scrollOffset
 }: GlitchingDefinitionProps) => {
-  const { definitionColor } = useColors();
-  const [glitchWord1Font, setGlitchWord1Font] = useState(fonts[0]);
-  const [glitchWord2Font, setGlitchWord2Font] = useState(fonts[0]);
+  const { definitionColor } = useContext(ColorContext);
 
-  useEffect(() => {
-    const glitchInterval = setInterval(() => {
-      const glitchSequence = async () => {
-        setGlitchWord1Font(fonts[1]);
-        await new Promise(r => setTimeout(r, 70));
-        setGlitchWord2Font(fonts[2]);
-        await new Promise(r => setTimeout(r, 70));
-        setGlitchWord1Font(fonts[2]);
-        setGlitchWord2Font(fonts[1]);
-        await new Promise(r => setTimeout(r, 70));
-        setGlitchWord1Font(fonts[0]);
-        setGlitchWord2Font(fonts[0]);
-      };
+  const getRandomFont = () => {
+    return fonts[Math.floor(Math.random() * fonts.length)];
+  };
 
-      glitchSequence();
-    }, 2500);
+  const glitchWord1Font = getRandomFont();
+  const glitchWord2Font = getRandomFont();
 
-    return () => clearInterval(glitchInterval);
-  }, []);
+  const baseStyle = {
+    color: definitionColor,
+    textDecoration: "underline",
+    textUnderlineOffset: "0.2em",
+    cursor: "help",
+    whiteSpace: "nowrap" as const,
+  };
+
+  // Remove the colon from the URL and ensure it's properly formatted
+  const dictionaryUrl = "https://www.collinsdictionary.com/dictionary/english/dys";
 
   return (
-    <a 
-      href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
+    <a
+      href={dictionaryUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="group inline-block relative"
-      onMouseMove={onMouseMove}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      style={{ color: definitionColor }}
+      style={baseStyle}
+      onClick={(e) => {
+        e.preventDefault();
+        window.open(dictionaryUrl, '_blank');
+      }}
     >
-      <span>{"("}</span>Dys<span> = </span>
-      <span style={{ 
+      <span style={{
         fontFamily: glitchWord1Font,
         transition: "font-family 0.05s ease-in-out"
-      }}>dis&shy;eased</span>
-      <span>, </span>
-      <span>ab&shy;nor&shy;mal</span>
-      <span> or </span>
-      <span style={{ 
+      }}>dys</span>
+      <span>{"("}</span>
+      <span style={{
         fontFamily: glitchWord2Font,
         transition: "font-family 0.05s ease-in-out"
       }}>faul&shy;ty</span>
