@@ -111,13 +111,14 @@ const Index = () => {
         >
           DYSDYS 
         </span>
-        The campaign to abolish <span
+        The campaign to abolish<span
           className={`transition-all duration-150 ${isStrikethrough ? 'line-through' : ''}`}
           style={{ 
             textDecorationColor: textColor,
             textDecorationThickness: '1px',
             fontFamily: fonts[currentFontIndex],
-            transition: "font-family 0.05s ease-in-out"
+            transition: "font-family 0.05s ease-in-out",
+            marginLeft: '-0.05em'  // Reduce space before 'dyslexia'
           }}
         >
           dyslexia
