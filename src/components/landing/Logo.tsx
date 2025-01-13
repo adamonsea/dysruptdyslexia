@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useColors } from './ColorContext';
 
 export const Logo = () => {
