@@ -72,7 +72,7 @@ export const GlitchingDefinition = ({
         fontFamily: glitchWord2Font,
         transition: "font-family 0.05s ease-in-out"
       }}>faul&shy;ty</span>
-      <span>{")"}</span>
+      <span>{")"}</span><span style={{ color: definitionColor }}>.</span>
     </a>
   );
 };

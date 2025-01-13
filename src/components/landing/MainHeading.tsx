@@ -66,7 +66,6 @@ export const MainHeading = () => {
         mousePosition={mousePosition}
         scrollOffset={scrollOffset}
       />
-      <span style={{ color: definitionColor }}>.</span>
       Your child is just what the world <span style={heavyTextStyle}>needs</span>.
       <DefinitionTooltip
         showTooltip={showTooltip}
