@@ -61,7 +61,7 @@ export const MainHeading = () => {
         color: definitionColor,
         fontFamily: glitchWord1Font,
         transition: "font-family 0.05s ease-in-out"
-      }}>dis&shy;eased</span><span style={{ color: definitionColor }}>, </span>ab&shy;nor&shy;mal<span style={{ color: definitionColor }}> or </span><span style={{ 
+      }}>dis&shy;eased</span><span style={{ color: definitionColor }}>, </span><span style={{ color: definitionColor }}>ab&shy;nor&shy;mal</span><span style={{ color: definitionColor }}> or </span><span style={{ 
         color: definitionColor,
         fontFamily: glitchWord2Font,
         transition: "font-family 0.05s ease-in-out"
