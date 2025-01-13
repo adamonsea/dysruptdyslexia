@@ -7,7 +7,12 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Missing Supabase URL or Anon Key');
 }
 
-// Sanitize URL by removing any trailing colons or slashes
-const sanitizedUrl = supabaseUrl.replace(/[:\/]+$/, '');
+// Sanitize URL by removing any trailing colons, slashes, or whitespace
+const sanitizedUrl = supabaseUrl.trim().replace(/[:\/]+$/, '');
 
-export const supabase = createClient(sanitizedUrl, supabaseAnonKey);
+export const supabase = createClient(sanitizedUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+  }
+});
