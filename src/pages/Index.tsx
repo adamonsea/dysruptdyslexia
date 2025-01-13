@@ -103,7 +103,7 @@ const Index = () => {
         }}
       >
         <span className="text-white">DYSDYS </span>
-        The campaign to abolish<span 
+        The campaign to abolish<span
           className={`transition-all duration-150 ${isStrikethrough ? 'line-through' : ''}`}
           style={{ 
             textDecorationColor: textColor,
