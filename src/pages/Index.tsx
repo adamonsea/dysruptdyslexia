@@ -102,7 +102,7 @@ const Index = () => {
           fontWeight: 800
         }}
       >
-        <span className="text-white">DYSDYS</span>
+        <span className="text-white">DYSDYS </span>
         The campaign to abolish<span 
           className={`transition-all duration-150 ${isStrikethrough ? 'line-through' : ''}`}
           style={{ 
