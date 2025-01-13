@@ -104,7 +104,9 @@ const Index = () => {
           className={`transition-all duration-150 ${isStrikethrough ? 'line-through' : ''}`}
           style={{ 
             textDecorationColor: textColor,
-            textDecorationThickness: '1px'
+            textDecorationThickness: '1px',
+            fontFamily: fonts[currentFontIndex],
+            transition: "font-family 0.05s ease-in-out"
           }}
         >
           dyslexia
