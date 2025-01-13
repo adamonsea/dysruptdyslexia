@@ -37,6 +37,7 @@ const Index = () => {
   const [contrastColor, setContrastColor] = useState("#F97316");
   const [definitionColor, setDefinitionColor] = useState("#22D3EE");
   const [showForm, setShowForm] = useState(false);
+  const [isStrikethrough, setIsStrikethrough] = useState(false);
 
   useEffect(() => {
     const colorInterval = setInterval(() => {
@@ -64,9 +65,15 @@ const Index = () => {
       glitchSequence();
     }, 2500);
 
+    // Add strikethrough glitch effect
+    const strikethroughInterval = setInterval(() => {
+      setIsStrikethrough(prev => !prev);
+    }, 2000);
+
     return () => {
       clearInterval(colorInterval);
       clearInterval(glitchInterval);
+      clearInterval(strikethroughInterval);
     };
   }, [currentColorIndex]);
 
@@ -85,9 +92,25 @@ const Index = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col justify-between items-center p-2 sm:p-3 md:p-4 lg:p-6"
+      className="min-h-screen flex flex-col justify-between items-center p-2 sm:p-3 md:p-4 lg:p-6 relative"
       style={{ backgroundColor: colors[currentColorIndex] }}
     >
+      {/* Logo text */}
+      <div 
+        className="absolute top-6 left-6 text-xl sm:text-2xl md:text-3xl font-bold tracking-tight"
+        style={{ color: textColor }}
+      >
+        The campaign to abolish <span 
+          className={`transition-all duration-300 ${isStrikethrough ? 'line-through' : ''}`}
+          style={{ 
+            textDecorationColor: textColor,
+            textDecorationThickness: '2px'
+          }}
+        >
+          dyslexia
+        </span>
+      </div>
+
       <div className="flex-1 flex items-center justify-center w-full">
         <h1
           className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[12rem] font-bold text-center leading-[1.1] sm:leading-[1.2] md:leading-[1.3] lg:leading-[1.4] uppercase tracking-normal sm:tracking-wide md:tracking-wider lg:tracking-[0.1em] xl:tracking-[0.15em]"
