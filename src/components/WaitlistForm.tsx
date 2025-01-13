@@ -39,12 +39,25 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
     setIsSubmitting(true);
 
     try {
+      // First, check if the email already exists in the waitlist
+      const { data: existingEntries } = await supabase
+        .from('waitlist_entries')
+        .select('email')
+        .eq('email', email.toLowerCase().trim());
+
+      if (existingEntries && existingEntries.length > 0) {
+        toast.error("This email is already registered");
+        setIsSubmitting(false);
+        return;
+      }
+
+      // If email doesn't exist, proceed with signup
       const { data, error } = await supabase.auth.signUp({
-        email,
+        email: email.toLowerCase().trim(),
         password: crypto.randomUUID(),
         options: {
           data: {
-            name,
+            name: name.trim(),
             child_age: age,
             wants_updates: updates,
           },
@@ -56,6 +69,22 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
         throw error;
       }
 
+      // Insert into waitlist_entries table
+      const { error: insertError } = await supabase
+        .from('waitlist_entries')
+        .insert([
+          {
+            name: name.trim(),
+            email: email.toLowerCase().trim(),
+            child_age: age,
+            wants_updates: updates,
+          }
+        ]);
+
+      if (insertError) {
+        throw insertError;
+      }
+
       toast.success("Please check your email to verify your account!");
       onOpenChange(false);
       
@@ -64,9 +93,9 @@ export function WaitlistForm({ open, onOpenChange }: WaitlistFormProps) {
       setEmail("");
       setAge("");
       setUpdates(false);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Signup error:", error);
-      toast.error("An error occurred. Please try again later.");
+      toast.error(error.message || "An error occurred. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
