@@ -98,7 +98,11 @@ const Index = () => {
       {/* Logo text */}
       <div 
         className="absolute top-4 left-4 text-sm sm:text-base md:text-lg font-bold tracking-tight mb-16"
-        style={{ color: textColor }}
+        style={{ 
+          color: textColor,
+          fontFamily: "'Caudex', serif",
+          fontWeight: 700
+        }}
       >
         The campaign to abolish <span 
           className={`transition-all duration-150 ${isStrikethrough ? 'line-through' : ''}`}
