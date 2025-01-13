@@ -14,12 +14,25 @@ export const Logo = () => {
   const [currentFont, setCurrentFont] = useState(fonts[0]);
 
   useEffect(() => {
-    const strikethroughInterval = setInterval(() => {
-      setIsStrikethrough(prev => !prev);
-      setCurrentFont(fonts[Math.floor(Math.random() * fonts.length)]);
-    }, 800);
+    const glitchInterval = setInterval(() => {
+      const glitchSequence = async () => {
+        setIsStrikethrough(true);
+        setCurrentFont(fonts[1]);
+        await new Promise(r => setTimeout(r, 70));
+        setCurrentFont(fonts[2]);
+        setIsStrikethrough(false);
+        await new Promise(r => setTimeout(r, 70));
+        setCurrentFont(fonts[3]);
+        setIsStrikethrough(true);
+        await new Promise(r => setTimeout(r, 70));
+        setCurrentFont(fonts[0]);
+        setIsStrikethrough(false);
+      };
 
-    return () => clearInterval(strikethroughInterval);
+      glitchSequence();
+    }, 2500);
+
+    return () => clearInterval(glitchInterval);
   }, []);
 
   return (
