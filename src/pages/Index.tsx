@@ -38,6 +38,8 @@ const Index = () => {
   const [definitionColor, setDefinitionColor] = useState("#22D3EE");
   const [showForm, setShowForm] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
+  const [glitchWord1Font, setGlitchWord1Font] = useState(fonts[0]);
+  const [glitchWord2Font, setGlitchWord2Font] = useState(fonts[0]);
 
   useEffect(() => {
     const colorInterval = setInterval(() => {
@@ -53,13 +55,15 @@ const Index = () => {
 
     const glitchInterval = setInterval(() => {
       const glitchSequence = async () => {
-        setCurrentFontIndex(1);
+        setGlitchWord1Font(fonts[1]);
         await new Promise(r => setTimeout(r, 70));
-        setCurrentFontIndex(2);
+        setGlitchWord2Font(fonts[2]);
         await new Promise(r => setTimeout(r, 70));
-        setCurrentFontIndex(1);
+        setGlitchWord1Font(fonts[2]);
+        setGlitchWord2Font(fonts[1]);
         await new Promise(r => setTimeout(r, 70));
-        setCurrentFontIndex(0);
+        setGlitchWord1Font(fonts[0]);
+        setGlitchWord2Font(fonts[0]);
       };
 
       glitchSequence();
@@ -118,8 +122,8 @@ const Index = () => {
             textDecorationThickness: '1px',
             fontFamily: fonts[currentFontIndex],
             transition: "font-family 0.05s ease-in-out",
-            marginLeft: '-0.15em',  // Increased negative margin
-            letterSpacing: '-0.02em' // Added slight negative letter spacing
+            marginLeft: '-0.15em',
+            letterSpacing: '-0.02em'
           }}
         >dyslexia</span>
       </div>
@@ -144,17 +148,15 @@ const Index = () => {
             rel="noopener noreferrer"
             className="underline hover:opacity-80"
             style={{ color: definitionColor }}
-          >Dys</a> <a 
-            href="https://www.collinsdictionary.com/dictionary/english/dys#:~:text=(d%C9%AAs%20),dysfunction"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:opacity-80"
-            style={{ 
-              color: definitionColor,
-              fontFamily: fonts[currentFontIndex],
-              transition: "font-family 0.05s ease-in-out"
-            }}
-          >= dis&shy;eased, ab&shy;nor&shy;mal or faul&shy;ty</a><span style={{ color: definitionColor }}>")</span><span style={{ color: definitionColor }}>.</span> Your child is just what the world <span style={heavyTextStyle}>needs</span>.
+          >Dys</a> = <span style={{ 
+            color: definitionColor,
+            fontFamily: glitchWord1Font,
+            transition: "font-family 0.05s ease-in-out"
+          }}>dis&shy;eased</span>, <span style={{ 
+            color: definitionColor,
+            fontFamily: glitchWord2Font,
+            transition: "font-family 0.05s ease-in-out"
+          }}>ab&shy;nor&shy;mal</span> or faul&shy;ty<span style={{ color: definitionColor }}>")</span><span style={{ color: definitionColor }}>.</span> Your child is just what the world <span style={heavyTextStyle}>needs</span>.
         </h1>
       </div>
       
