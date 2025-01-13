@@ -152,11 +152,11 @@ const Index = () => {
             color: definitionColor,
             fontFamily: glitchWord1Font,
             transition: "font-family 0.05s ease-in-out"
-          }}>dis&shy;eased</span>, <span style={{ 
+          }}>dis&shy;eased</span>, ab&shy;nor&shy;mal or <span style={{ 
             color: definitionColor,
             fontFamily: glitchWord2Font,
             transition: "font-family 0.05s ease-in-out"
-          }}>ab&shy;nor&shy;mal</span> or faul&shy;ty<span style={{ color: definitionColor }}>")</span><span style={{ color: definitionColor }}>.</span> Your child is just what the world <span style={heavyTextStyle}>needs</span>.
+          }}>faul&shy;ty</span><span style={{ color: definitionColor }}>")</span><span style={{ color: definitionColor }}>.</span> Your child is just what the world <span style={heavyTextStyle}>needs</span>.
         </h1>
       </div>
       
