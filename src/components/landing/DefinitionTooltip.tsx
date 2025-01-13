@@ -21,7 +21,7 @@ export const DefinitionTooltip = ({ showTooltip, mousePosition, scrollOffset }: 
     fontSize: '1rem',
     letterSpacing: 'normal',
     whiteSpace: 'nowrap' as const,
-    transform: `translate(${Math.sin(scrollOffset * 0.1) * 30}px, ${-50 + scrollOffset}px)`,
+    transform: `translate(${Math.sin(scrollOffset * 0.1) * 90}px, ${-50 + scrollOffset}px)`, // Increased horizontal movement from 30 to 90
     top: '50%',
     right: '-20px',
     transition: 'transform 0.1s ease-out',
