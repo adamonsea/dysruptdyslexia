@@ -4,7 +4,8 @@ import { useColors } from './ColorContext';
 const fonts = [
   'font-serif',
   'font-mono',
-  'font-sans',
+  'Righteous',
+  'Rubik Mono One',
   'Caudex',
 ];
 
@@ -18,19 +19,21 @@ export const Logo = () => {
       const glitchSequence = async () => {
         setIsStrikethrough(true);
         setCurrentFont(fonts[1]);
-        await new Promise(r => setTimeout(r, 70));
+        await new Promise(r => setTimeout(r, 40));
         setCurrentFont(fonts[2]);
         setIsStrikethrough(false);
-        await new Promise(r => setTimeout(r, 70));
+        await new Promise(r => setTimeout(r, 40));
         setCurrentFont(fonts[3]);
         setIsStrikethrough(true);
-        await new Promise(r => setTimeout(r, 70));
-        setCurrentFont(fonts[0]);
+        await new Promise(r => setTimeout(r, 40));
+        setCurrentFont(fonts[4]);
         setIsStrikethrough(false);
+        await new Promise(r => setTimeout(r, 40));
+        setCurrentFont(fonts[0]);
       };
 
       glitchSequence();
-    }, 2500);
+    }, 2000);
 
     return () => clearInterval(glitchInterval);
   }, []);
