@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useColors } from './ColorContext';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const fonts = [
   "'Plus Jakarta Sans'",
@@ -14,6 +14,8 @@ export const MainHeading = () => {
   const [glitchWord2Font, setGlitchWord2Font] = useState(fonts[0]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [showTooltip, setShowTooltip] = useState(false);
+  const [scrollOffset, setScrollOffset] = useState(0);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const glitchInterval = setInterval(() => {
@@ -35,16 +37,61 @@ export const MainHeading = () => {
     return () => clearInterval(glitchInterval);
   }, []);
 
+  useEffect(() => {
+    if (isMobile) {
+      const handleScroll = () => {
+        const offset = (window.scrollY * 0.1) % 20; // Creates a repeating offset pattern
+        setScrollOffset(offset);
+      };
+
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [isMobile]);
+
   const heavyTextStyle = {
     fontWeight: 800,
     letterSpacing: '0.05em',
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    setMousePosition({
-      x: e.clientX,
-      y: e.clientY
-    });
+    if (!isMobile) {
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY
+      });
+    }
+  };
+
+  const tooltipStyle = isMobile ? {
+    position: 'absolute' as const,
+    backgroundColor: 'white',
+    color: 'black',
+    padding: '0.5rem 1rem',
+    borderRadius: '0.25rem',
+    pointerEvents: 'none',
+    zIndex: 50,
+    fontSize: '1rem',
+    letterSpacing: 'normal',
+    whiteSpace: 'nowrap' as const,
+    transform: `translate(0, ${-50 + scrollOffset}px)`,
+    top: '50%',
+    right: '-20px',
+    transition: 'transform 0.1s ease-out',
+  } : {
+    position: 'fixed' as const,
+    backgroundColor: 'white',
+    color: 'black',
+    padding: '0.5rem 1rem',
+    borderRadius: '0.25rem',
+    pointerEvents: 'none',
+    zIndex: 50,
+    fontSize: '1rem',
+    letterSpacing: 'normal',
+    whiteSpace: 'nowrap' as const,
+    left: `${mousePosition.x + 10}px`,
+    top: `${mousePosition.y + 10}px`,
+    transform: 'translate(0, -50%)',
   };
 
   return (
@@ -68,8 +115,8 @@ export const MainHeading = () => {
         rel="noopener noreferrer"
         className="group inline-block relative"
         onMouseMove={handleMouseMove}
-        onMouseEnter={() => setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}
+        onMouseEnter={() => !isMobile && setShowTooltip(true)}
+        onMouseLeave={() => !isMobile && setShowTooltip(false)}
         style={{ color: definitionColor }}
       >
         <span>{"("}</span>Dys<span> = </span>
@@ -85,18 +132,8 @@ export const MainHeading = () => {
           transition: "font-family 0.05s ease-in-out"
         }}>faul&shy;ty</span>
         <span>{")"}</span>
-        {showTooltip && (
-          <div
-            className="fixed bg-white text-black text-sm px-2 py-1 rounded pointer-events-none z-50"
-            style={{
-              left: `${mousePosition.x + 10}px`,
-              top: `${mousePosition.y + 10}px`,
-              transform: 'translate(0, -50%)',
-              whiteSpace: 'nowrap',
-              fontSize: '1rem',
-              letterSpacing: 'normal'  // Added this line to normalize letter spacing
-            }}
-          >
+        {(showTooltip || isMobile) && (
+          <div style={tooltipStyle}>
             Collins Dictionary definition
           </div>
         )}
