@@ -66,7 +66,7 @@ export const Logo = () => {
       >
         DYSDYS 
       </span>
-      The campaign to abolish<span
+      The campaign to dysrupt<span
         className={`transition-all duration-150 ${currentFont} ${isStrikethrough ? 'line-through' : ''}`}
         style={{ 
           textDecorationColor: textColor,
