@@ -10,7 +10,8 @@ export default defineConfig(({ mode }) => ({
     strictPort: true,
     hmr: {
       clientPort: 443,
-      protocol: 'wss'
+      protocol: 'wss',
+      host: 'd36c84ff-f764-476a-97b7-c0653b289542.lovableproject.com'
     }
   },
   plugins: [
