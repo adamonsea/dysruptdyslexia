@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { WaitlistForm } from "@/components/WaitlistForm";
+import { RenameForm } from "@/components/RenameForm";
 import { Logo } from "@/components/landing/Logo";
 import { MainHeading } from "@/components/landing/MainHeading";
 import { SubHeading } from "@/components/landing/SubHeading";
@@ -33,7 +34,8 @@ const Index = () => {
   const [textColor, setTextColor] = useState("#FFFFFF");
   const [contrastColor, setContrastColor] = useState("#F97316");
   const [definitionColor, setDefinitionColor] = useState("#22D3EE");
-  const [showForm, setShowForm] = useState(false);
+  const [showWaitlistForm, setShowWaitlistForm] = useState(false);
+  const [showRenameForm, setShowRenameForm] = useState(false);
 
   useEffect(() => {
     const colorInterval = setInterval(() => {
@@ -78,19 +80,30 @@ const Index = () => {
         <div className="flex flex-col items-center justify-center space-y-12 sm:space-y-16 md:space-y-20 mb-12 sm:mb-16 md:mb-20 w-full">
           <SubHeading />
           
-          <button
-            onClick={() => setShowForm(true)}
-            className="px-6 sm:px-8 py-3 sm:py-4 text-lg sm:text-xl font-semibold transition-transform duration-300 hover:scale-105"
-            style={{
-              backgroundColor: textColor,
-              color: colors[currentColorIndex],
-            }}
-          >
-            Join waitlist
-          </button>
+          <div className="flex flex-col items-center space-y-6">
+            <button
+              onClick={() => setShowWaitlistForm(true)}
+              className="px-6 sm:px-8 py-3 sm:py-4 text-lg sm:text-xl font-semibold transition-transform duration-300 hover:scale-105"
+              style={{
+                backgroundColor: textColor,
+                color: colors[currentColorIndex],
+              }}
+            >
+              Join waitlist
+            </button>
+            
+            <button
+              onClick={() => setShowRenameForm(true)}
+              className="text-sm underline hover:opacity-80 transition-opacity"
+              style={{ color: textColor }}
+            >
+              Rename Dyslexia
+            </button>
+          </div>
         </div>
 
-        <WaitlistForm open={showForm} onOpenChange={setShowForm} />
+        <WaitlistForm open={showWaitlistForm} onOpenChange={setShowWaitlistForm} />
+        <RenameForm open={showRenameForm} onOpenChange={setShowRenameForm} />
       </div>
     </ColorContext.Provider>
   );

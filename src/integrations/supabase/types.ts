@@ -9,6 +9,33 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      rename_suggestions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+          reason: string
+          suggested_name: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          reason: string
+          suggested_name: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          reason?: string
+          suggested_name?: string
+        }
+        Relationships: []
+      }
       waitlist_entries: {
         Row: {
           child_age: string
