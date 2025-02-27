@@ -1,3 +1,4 @@
+
 import { useIsMobile } from '@/hooks/use-mobile';
 
 interface DefinitionTooltipProps {
@@ -42,7 +43,7 @@ export const DefinitionTooltip = ({ showTooltip, mousePosition, scrollOffset }: 
 
   return (
     <div style={tooltipStyle}>
-      Collins Dictionary definition
+      Collins Dictionary definition, 2024
     </div>
   );
 };

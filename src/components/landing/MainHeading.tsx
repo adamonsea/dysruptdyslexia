@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useColors } from './ColorContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -72,6 +73,26 @@ export const MainHeading = () => {
         mousePosition={mousePosition}
         scrollOffset={scrollOffset}
       />
+      {showTooltip && !isMobile && (
+        <div
+          className="fixed pointer-events-none shadow-lg z-50"
+          style={{
+            left: `${mousePosition.x + 20}px`,
+            top: `${mousePosition.y + 20}px`,
+            transform: 'translate(0, 0)',
+            maxWidth: '300px',
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            overflow: 'hidden'
+          }}
+        >
+          <img 
+            src="/lovable-uploads/3aa0be8f-c149-41ef-9b99-431ec29696c0.png" 
+            alt="Dictionary definition of dys-" 
+            className="w-full h-auto"
+          />
+        </div>
+      )}
     </h1>
   );
 };
